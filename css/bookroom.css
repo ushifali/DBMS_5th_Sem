@@ -1,0 +1,14 @@
+#book_submit {
+    font-size: 20px;
+    letter-spacing: 2px;
+    padding: 25px;
+    justify-content: space-evenly;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+}
+
+select {
+    padding: 10px;
+    border: grey solid 1px;
+}
