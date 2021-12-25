@@ -62,32 +62,31 @@ session_start();
                 </thead>
                 <tbody>
 
-                <?php
+                    <?php
 
-                    $rooms = "Select * from room where hid='".$hostel_result['hid']."';";
+                    $rooms = "Select * from room where hid='" . $hostel_result['hid'] . "';";
                     $rooms_execute = mysqli_query($con, $rooms);
-                    if(!$rooms_execute)
-                    {
+                    if (!$rooms_execute) {
                         echo mysqli_error($con);
                     }
 
                     while ($rooms_result = mysqli_fetch_assoc($rooms_execute)) {
-                    
-                    
+
+
                     ?>
-                    <tr>
-                        <td><?php echo $rooms_result['roomno']; ?></td>
-                        <td>
-                            <?php if ($rooms_result['alloted'] == 'Yes') {?>
-                            <button id="<?php echo $count; ?>" class="btn btn-success">Booked</button>
+                        <tr>
+                            <td><?php echo $rooms_result['roomno']; ?></td>
+                            <td>
+                                <?php if ($rooms_result['alloted'] == 'Yes') { ?>
+                                    <button id="<?php echo $count; ?>" class="btn btn-success">Booked</button>
 
-                            <?php } else {?>
-                                <button id="<?php echo $count; ?>" class="btn btn-warning">Not Booked</button>
-                            <?php } ?>
-                        </td>
-                    </tr>
+                                <?php } else { ?>
+                                    <button id="<?php echo $count; ?>" class="btn btn-warning">Not Booked</button>
+                                <?php } ?>
+                            </td>
+                        </tr>
 
-<?php } ?>
+                    <?php } ?>
 
                 </tbody>
             </table>
