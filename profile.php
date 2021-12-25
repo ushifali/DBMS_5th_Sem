@@ -92,8 +92,13 @@ session_start();
                             <br> Room No: <?php echo $userinfo_results['roomno']; ?></span>
                     </div>
 
+
+
                     <div class=" px-2 rounded mt-4 date "> <span class="join">Booked on: <?php echo $userinfo_results['a_date']; ?> </span> </div>
 
+                    <a href="deletebooking.php?q=<?php echo $userinfo_results['hid']; ?>&p=<?php echo $userinfo_results['roomno']; ?>">
+                        <button type="button" class="btn btn-danger">Delete Booking</button>
+                    </a>
                 </div>
             </div>
         </div>

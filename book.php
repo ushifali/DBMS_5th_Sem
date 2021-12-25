@@ -9,7 +9,7 @@ if (isset($_GET['q']) && isset($_GET['p'])) {
 
     $con = mysqli_connect("localhost", "root", "", "roombooking");
 
-    //to update the bed filled
+    
 
     //to update in bookedrooms table
 
@@ -21,6 +21,7 @@ if (isset($_GET['q']) && isset($_GET['p'])) {
     }
 
 
+    //to update the bed filled
     
 
     $rooms = "Update room set bedsbooked=bedsbooked+1 where hid=$hostelno and roomno = $roomno;";
@@ -30,11 +31,6 @@ if (isset($_GET['q']) && isset($_GET['p'])) {
         echo mysqli_error($con);
         exit();
     }
-
-
-
-   
-
 
 
     //if fully filled update the status

@@ -46,7 +46,7 @@ session_start();
         </ul>
     </nav>
     <div class="justify-content-center">
-        <table class=" table table-striped table-bordered table-hover " id=" info_table">
+        <table class=" table table-striped table-bordered table-hover " id="info_table">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Room No</th>
