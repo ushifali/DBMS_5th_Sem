@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$hid = $_GET['q'];
+
 ?>
 
 <!DOCTYPE html>
@@ -13,9 +13,9 @@ $hid = $_GET['q'];
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href="nav.css" />
-    <link rel="stylesheet" href="homepage.css" />
-    <link rel="stylesheet" href="bookroom.css">
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/homepage.css" />
+    <link rel="stylesheet" href="css/bookroom.css">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
@@ -36,8 +36,8 @@ $hid = $_GET['q'];
             <div class="line3"></div>
         </div>
         <ul class="nav-links">
-            <li><button class="login-button"><a href="girlsbooking.php?q='H2'">Girls Hostel</a></button></li>
-            <li><button class="login-button"><a href="boysbooking.php?q='H1'">Boys Hostel</a></button></li>
+            <li><button class="login-button"><a href="girlsbooking.php">Girls Hostel</a></button></li>
+            <li><button class="login-button"><a href="boysbooking.php">Boys Hostel</a></button></li>
 
 
             <li><button class="login-button"><a href="profile.php">Profile</a></button></li>
@@ -45,8 +45,55 @@ $hid = $_GET['q'];
 
         </ul>
     </nav>
+    <div>
+        <table class="table table-striped table-bordered table-hover" id="info_table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Room No</th>
+                    <th scope="col">Max Beds</th>
+                    <th scope="col">Beds Filled</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
 
+                <?php
+                $count = 0;
+                $con = mysqli_connect("localhost", "root", "", "roombooking");
 
+                $rooms = "Select * from room where hid='H2';";
+                $rooms_execute = mysqli_query($con, $rooms);
+                if (!$rooms_execute) {
+                    echo mysqli_error($con);
+                }
+
+                while ($rooms_result = mysqli_fetch_assoc($rooms_execute)) {
+                    $count++;
+
+                ?>
+                    <tr>
+                        <td><?php echo $rooms_result['roomno']; ?></td>
+                        <td><?php echo $rooms_result['maxbeds']; ?></td>
+                        <td><?php echo $rooms_result['bedsbooked']; ?></td>
+
+                        <td>
+                            <?php if ($rooms_result['alloted'] == 'Yes') { ?>
+
+                                <button id="<?php echo $count; ?>" class="btn btn-success">Booked</button>
+
+                            <?php } else { ?>
+                                <a href="book.php?q='H2'&p=<?php echo $rooms_result['roomno']; ?>">
+                                    <button id="<?php echo $count; ?>" class="btn btn-primary">Book</button>
+                                </a>
+                            <?php } ?>
+                        </td>
+                    </tr>
+
+                <?php } ?>
+
+            </tbody>
+        </table>
+    </div>
 
 
     <footer class="bg-dark text-center text-white">

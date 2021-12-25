@@ -12,6 +12,7 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/admin.css" />
 
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
@@ -33,66 +34,98 @@ session_start();
             <div class="line3"></div>
         </div>
         <ul class="nav-links">
-            <li><button class="login-button"><a href="girlsbooking.php">Girls Hostel</a></button></li>
-            <li><button class="login-button"><a href="boysbooking.php">Boys Hostel</a></button></li>
-
-
-            <li><button class="login-button"><a href="profile.php">Profile</a></button></li>
+            <li><button class="login-button"><a href="adminpage.php">Admin</a></button></li>
             <li><button class="login-button"><a href="logout.php">Logout</a></button></li>
 
         </ul>
     </nav>
 
-    <div>
+    <div class="viewtable">
 
-        <table class="table table-striped table-bordered table-hover" id="info_table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Room No</th>
-                    <th scope="col">Max Beds</th>
-                    <th scope="col">Beds Filled</th>
-                    <th scope="col">Status</th>
-                </tr>
-            </thead>
-            <tbody>
+        <?php
+
+        $con = mysqli_connect("localhost", "root", "", "roombooking");
+
+        $hostel = "Select * from hostel;";
+        $hostel_execute = mysqli_query($con, $hostel);
+
+        while ($hostel_result = mysqli_fetch_assoc($hostel_execute)) {
+            echo "<h2>" . $hostel_result['hname'] . "</h2>";
+        ?>
+
+            <table class="table table-striped table-bordered table-hover" id="info_table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Room No</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
 
                 <?php
-                $count = 0;
-                $con = mysqli_connect("localhost", "root", "", "roombooking");
 
-                $rooms = "Select * from room where hid='H1';";
-                $rooms_execute = mysqli_query($con, $rooms);
-                if (!$rooms_execute) {
-                    echo mysqli_error($con);
-                }
+                    $rooms = "Select * from room where hid='".$hostel_result['hid']."';";
+                    $rooms_execute = mysqli_query($con, $rooms);
+                    if(!$rooms_execute)
+                    {
+                        echo mysqli_error($con);
+                    }
 
-                while ($rooms_result = mysqli_fetch_assoc($rooms_execute)) {
-                    $count++;
-
-                ?>
+                    while ($rooms_result = mysqli_fetch_assoc($rooms_execute)) {
+                    
+                    
+                    ?>
                     <tr>
                         <td><?php echo $rooms_result['roomno']; ?></td>
-                        <td><?php echo $rooms_result['maxbeds']; ?></td>
-                        <td><?php echo $rooms_result['bedsbooked']; ?></td>
-
                         <td>
-                            <?php if ($rooms_result['alloted'] == 'Yes') { ?>
+                            <?php if ($rooms_result['alloted'] == 'Yes') {?>
+                            <button id="<?php echo $count; ?>" class="btn btn-success">Booked</button>
 
-                                <button id="<?php echo $count; ?>" class="btn btn-success">Booked</button>
-
-                            <?php } else { ?>
-                                <a href="book.php?q='H1'&p=<?php echo $rooms_result['roomno']; ?>">
-                                    <button id="<?php echo $count; ?>" class="btn btn-primary">Book</button>
-                                </a>
+                            <?php } else {?>
+                                <button id="<?php echo $count; ?>" class="btn btn-warning">Not Booked</button>
                             <?php } ?>
                         </td>
                     </tr>
 
-                <?php } ?>
+<?php } ?>
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+
+        <?php
+        }
+
+        ?>
+
+
+
     </div>
+
+    <form action="adminpageinsert.php" id="add_room_form" method="POST" name="form1">
+
+        <h2>ADD ROOMS :</h2>
+
+
+        <div class="mb-3">
+            <label for="hostel">Choose a hostel:</label>
+            <select name="hostel" id="hostel">
+                <option value="H1">BOYS HOSTEL</option>
+                <option value="H2">GIRLS HOSTEL</option>
+            </select>
+
+        </div>
+
+
+        <div class="mb-3">
+            <label for="roomno">Room No:</label>
+            <input type="number" min=0 id="roomno" placeholder="Add Room No" name="roomno">
+        </div>
+
+        <button id="addroom" type="submit" class="btn btn-primary">ADD</button>
+    </form>
+
+
+    <script></script>
 
 
 
