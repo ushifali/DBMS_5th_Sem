@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+
+    font-size: 18px;
+}
+
+#info_table {
+    width: 550px;
+}
+
+#tables h2 {
+    padding: 20px;
+}
+
+.container_for_floors {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

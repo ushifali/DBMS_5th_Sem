@@ -45,53 +45,53 @@ session_start();
 
         </ul>
     </nav>
-    <div>
-        <table class="table table-striped table-bordered table-hover" id="info_table">
-            <thead class="thead-dark">
+    <div class="justify-content-center">
+        <table class=" table table-striped table-bordered table-hover " id=" info_table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Room No</th>
+                <th scope="col">Max Beds</th>
+                <th scope="col">Beds Filled</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <?php
+            $count = 0;
+            $con = mysqli_connect("localhost", "root", "", "roombooking");
+
+            $rooms = "Select * from room where hid='H2';";
+            $rooms_execute = mysqli_query($con, $rooms);
+            if (!$rooms_execute) {
+                echo mysqli_error($con);
+            }
+
+            while ($rooms_result = mysqli_fetch_assoc($rooms_execute)) {
+                $count++;
+
+            ?>
                 <tr>
-                    <th scope="col">Room No</th>
-                    <th scope="col">Max Beds</th>
-                    <th scope="col">Beds Filled</th>
-                    <th scope="col">Status</th>
+                    <td><?php echo $rooms_result['roomno']; ?></td>
+                    <td><?php echo $rooms_result['maxbeds']; ?></td>
+                    <td><?php echo $rooms_result['bedsbooked']; ?></td>
+
+                    <td>
+                        <?php if ($rooms_result['alloted'] == 'Yes') { ?>
+
+                            <button id="<?php echo $count; ?>" class="btn btn-success">Booked</button>
+
+                        <?php } else { ?>
+                            <a href="book.php?q='H2'&p=<?php echo $rooms_result['roomno']; ?>">
+                                <button id="<?php echo $count; ?>" class="btn btn-primary">Book</button>
+                            </a>
+                        <?php } ?>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
 
-                <?php
-                $count = 0;
-                $con = mysqli_connect("localhost", "root", "", "roombooking");
+            <?php } ?>
 
-                $rooms = "Select * from room where hid='H2';";
-                $rooms_execute = mysqli_query($con, $rooms);
-                if (!$rooms_execute) {
-                    echo mysqli_error($con);
-                }
-
-                while ($rooms_result = mysqli_fetch_assoc($rooms_execute)) {
-                    $count++;
-
-                ?>
-                    <tr>
-                        <td><?php echo $rooms_result['roomno']; ?></td>
-                        <td><?php echo $rooms_result['maxbeds']; ?></td>
-                        <td><?php echo $rooms_result['bedsbooked']; ?></td>
-
-                        <td>
-                            <?php if ($rooms_result['alloted'] == 'Yes') { ?>
-
-                                <button id="<?php echo $count; ?>" class="btn btn-success">Booked</button>
-
-                            <?php } else { ?>
-                                <a href="book.php?q='H2'&p=<?php echo $rooms_result['roomno']; ?>">
-                                    <button id="<?php echo $count; ?>" class="btn btn-primary">Book</button>
-                                </a>
-                            <?php } ?>
-                        </td>
-                    </tr>
-
-                <?php } ?>
-
-            </tbody>
+        </tbody>
         </table>
     </div>
 

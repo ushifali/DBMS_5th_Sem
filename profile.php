@@ -14,6 +14,7 @@ session_start();
     <link rel="stylesheet" href="css/nav.css" />
     <link rel="stylesheet" href="css/homepage.css" />
     <link rel="stylesheet" href="css/bookroom.css">
+    <link rel="stylesheet" href="css/profile.css">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
@@ -43,6 +44,61 @@ session_start();
 
         </ul>
     </nav>
+
+    <?php
+
+
+    $con = mysqli_connect("localhost", "root", "", "roombooking");
+
+    $userinfo = "select * from roomallocated where usn='" . $_SESSION['usn'] . "';";
+    $userinfo_execute = mysqli_query($con, $userinfo);
+    if (!$userinfo_execute) {
+        echo mysqli_error($con);
+        exit();
+    }
+
+    $userinfo_results = mysqli_fetch_assoc($userinfo_execute);
+
+    if (mysqli_num_rows($userinfo_execute) == 0) {
+    ?>
+
+        <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+            <div class="card p-4">
+
+                <div class="d-flex flex-row justify-content-center align-items-center gap-2"> <span class="idd1"><?php echo $_SESSION['usn']; ?></span></div>
+                <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span class="number">Booked Room Details</span> </div>
+
+                <div class="text mt-3 justify-content-center">
+                    You havent booked any rooms!
+                </div>
+            </div>
+        </div>
+
+    <?php
+    } else {
+
+
+    ?>
+
+        <div>
+            <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+                <div class="card p-4">
+
+                    <div class="d-flex flex-row justify-content-center align-items-center gap-2"> <span class="idd1"><?php echo $_SESSION['usn']; ?></span></div>
+                    <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span class="number">Booked Room Details</span> </div>
+
+                    <div class="text mt-3"> <span>Booking-Id:<?php echo $userinfo_results['usn']; ?> <br>
+                            <br>Hostel No: <?php echo $userinfo_results['hid']; ?><br>
+                            <br> Room No: <?php echo $userinfo_results['roomno']; ?></span>
+                    </div>
+
+                    <div class=" px-2 rounded mt-4 date "> <span class="join">Booked on: <?php echo $userinfo_results['a_date']; ?> </span> </div>
+
+                </div>
+            </div>
+        </div>
+
+    <?php } ?>
 
 
 

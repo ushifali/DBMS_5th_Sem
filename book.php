@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 if (isset($_GET['q']) && isset($_GET['p'])) {
     $hostelno = $_GET['q'];
     $roomno = $_GET['p'];
@@ -6,12 +9,35 @@ if (isset($_GET['q']) && isset($_GET['p'])) {
 
     $con = mysqli_connect("localhost", "root", "", "roombooking");
 
+    //to update the bed filled
+
+    //to update in bookedrooms table
+
+    $roomallocated = "insert into roomallocated values('" . $_SESSION['usn'] . "','" . date("Y/m/d") . "'," . $hostelno . ", $roomno);";
+    $roomallocated_execute = mysqli_query($con, $roomallocated);
+    if (!$roomallocated_execute) {
+        echo mysqli_error($con);
+        exit();
+    }
+
+
+    
+
     $rooms = "Update room set bedsbooked=bedsbooked+1 where hid=$hostelno and roomno = $roomno;";
     $rooms_execute = mysqli_query($con, $rooms);
 
     if (!$rooms_execute) {
         echo mysqli_error($con);
+        exit();
     }
+
+
+
+   
+
+
+
+    //if fully filled update the status
 
     $check_room_filled = "Select maxbeds, bedsbooked from room where hid=$hostelno and roomno = $roomno;";
     $check_room_executed = mysqli_query($con, $check_room_filled);
@@ -22,10 +48,19 @@ if (isset($_GET['q']) && isset($_GET['p'])) {
         $rooms_allot_execute = mysqli_query($con, $rooms_allot);
         if (!$rooms_allot_execute) {
             echo mysqli_error($con);
+            exit();
         }
+
+
         
     }
-}
+
+
+    
+
+
+
+    }
 
 
 

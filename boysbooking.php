@@ -12,6 +12,8 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/homepage.css" />
+    <link rel="stylesheet" href="css/bookroom.css">
 
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
@@ -43,9 +45,9 @@ session_start();
         </ul>
     </nav>
 
-    <div>
+    <div class="justify-content-center">
 
-        <table class="table table-striped table-bordered table-hover" id="info_table">
+        <table class=" table table-striped table-bordered table-hover" id="info_table">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Room No</th>
