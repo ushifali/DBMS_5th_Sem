@@ -50,7 +50,7 @@ session_start();
 
     $con = mysqli_connect("localhost", "root", "", "roombooking");
 
-    $userinfo = "select * from roomallocated where usn='" . $_SESSION['usn'] . "';";
+    $userinfo = "select * from roomallocated r, hostel h where r.usn='" . $_SESSION['usn'] . "'and r.hid = h.hid;";
     $userinfo_execute = mysqli_query($con, $userinfo);
     if (!$userinfo_execute) {
         echo mysqli_error($con);
@@ -88,7 +88,7 @@ session_start();
                     <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span class="number">Booked Room Details</span> </div>
 
                     <div class="text mt-3"> <span>Booking-Id:<?php echo $userinfo_results['usn']; ?> <br>
-                            <br>Hostel No: <?php echo $userinfo_results['hid']; ?><br>
+                            <br>Hostel No: <?php echo $userinfo_results['hname']; ?><br>
                             <br> Room No: <?php echo $userinfo_results['roomno']; ?></span>
                     </div>
 
@@ -96,9 +96,34 @@ session_start();
 
                     <div class=" px-2 rounded mt-4 date "> <span class="join">Booked on: <?php echo $userinfo_results['a_date']; ?> </span> </div>
 
-                    <a href="deletebooking.php?q=<?php echo $userinfo_results['hid']; ?>&p=<?php echo $userinfo_results['roomno']; ?>">
-                        <button type="button" class="btn btn-danger">Delete Booking</button>
-                    </a>
+                    <button type="button" id="del_btn" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">Delete Booking</button>
+                    
+
+                    <div class="modal" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Are You Sure? </h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    Your Booking will be deleted .
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <a href="deletebooking.php?q=<?php echo $userinfo_results['hid']; ?>&p=<?php echo $userinfo_results['roomno']; ?>">
+                                        <button type="button" id="del_sure_btn" class="btn btn-danger" data-bs-dismiss="modal">Ok</button>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

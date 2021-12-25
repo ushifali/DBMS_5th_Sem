@@ -83,9 +83,38 @@ session_start();
                                 <button id="<?php echo $count; ?>" class="btn btn-success">Booked</button>
 
                             <?php } else { ?>
-                                <a href="book.php?q='H1'&p=<?php echo $rooms_result['roomno']; ?>">
-                                    <button id="<?php echo $count; ?>" class="btn btn-primary">Book</button>
-                                </a>
+
+                                <button id="<?php echo $count; ?>" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Book</button>
+
+
+                                <div class="modal" id="myModal">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Book? </h4>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            </div>
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                Your Booking will be booked .
+                                            </div>
+
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <a href="book.php?q='H1'&p=<?php echo $rooms_result['roomno']; ?>">
+                                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Ok</button>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
                             <?php } ?>
                         </td>
                     </tr>

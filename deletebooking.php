@@ -48,6 +48,8 @@ if (isset($_GET['q']) && isset($_GET['p'])) {
         exit();
     }
 
+    header("Location: profile.php");   
+
 
     
 }

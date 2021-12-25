@@ -52,7 +52,7 @@ if (isset($_GET['q']) && isset($_GET['p'])) {
     }
 
 
-    
+    header("Location: profile.php");   
 
 
 
@@ -62,17 +62,3 @@ if (isset($_GET['q']) && isset($_GET['p'])) {
 
 
 ?>
-
-
-<!-- create table roomallocated(
-    usn varchar(20) not null primary key,
-    a_date date not null,
-    hid varchar(20),
-    roomno int,
-    foreign key(usn) REFERENCES
-    login(usn) on DELETE CASCADE on UPDATE CASCADE,
-    foreign key(hid) REFERENCES
-    hostel(hid) on DELETE CASCADE on UPDATE CASCADE,
-    foreign key(roomno) REFERENCES
-    room(roomno) on DELETE CASCADE on UPDATE CASCADE);
-     -->
