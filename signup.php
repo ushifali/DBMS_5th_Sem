@@ -10,9 +10,8 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
 <!-- MDB -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="nav.css">
-<link rel="stylesheet" href="login.css">
-<link rel="stylesheet" href="footer.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/login.css">
 <link rel="stylesheet" href="signup.css">
 
 </head>
@@ -63,7 +62,7 @@
                     
 
                     <button type="submit" class="card-button">Sign In</button>
-                    <medium class="card-forgot-password">Already have an Account ? <a href="signup.php">Click here to Login</a></medium>
+                    <medium class="card-forgot-password">Already have an Account ? <a href="login.php">Click here to Login</a></medium>
                     <!-- <medium class="card-forgot-password">Forgot your passwrod ? <a>Reset Password</a></medium> -->
                 </form>
             </div>
