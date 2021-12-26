@@ -1,7 +1,5 @@
 <?php
 session_start();
-
-
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +14,7 @@ session_start();
     <link rel="stylesheet" href="css/nav.css" />
     <link rel="stylesheet" href="css/homepage.css" />
     <link rel="stylesheet" href="css/bookroom.css">
+
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
@@ -45,8 +44,10 @@ session_start();
 
         </ul>
     </nav>
+
     <div class="justify-content-center" id="center-this">
-        <table class=" table table-striped table-bordered table-hover " id="info_table">
+
+        <table class=" table table-striped table-bordered table-hover" id="info_table">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Room No</th>
@@ -82,9 +83,38 @@ session_start();
                                 <button id="<?php echo $count; ?>" class="btn btn-success">Booked</button>
 
                             <?php } else { ?>
-                                <a href="book.php?q='H2'&p=<?php echo $rooms_result['roomno']; ?>">
-                                    <button id="<?php echo $count; ?>" class="btn btn-primary">Book</button>
-                                </a>
+
+                                <button id="<?php echo $count; ?>" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Book</button>
+
+
+                                <div class="modal" id="myModal">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Book? </h4>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            </div>
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                Your Booking will be booked .
+                                            </div>
+
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <a href="book.php?q='H2'&p=<?php echo $rooms_result['roomno']; ?>">
+                                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Ok</button>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
                             <?php } ?>
                         </td>
                     </tr>
@@ -94,6 +124,8 @@ session_start();
             </tbody>
         </table>
     </div>
+
+
 
 
     <footer class="bg-dark text-center text-white">
