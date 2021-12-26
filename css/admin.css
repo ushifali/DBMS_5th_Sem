@@ -1,7 +1,17 @@
-#add_room_form
-{
-    display:flex;
+#add_room_form {
+    display: flex;
     flex-direction: column;
     align-items: center;
     padding: 30px;
+}
+
+
+.viewtable {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+table{
+    width:50%;
 }

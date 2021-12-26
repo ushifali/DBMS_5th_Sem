@@ -57,6 +57,8 @@ session_start();
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Room No</th>
+                        <th scope="col">Warden</th>
+                        <th scope="col">Booked by</th>
                         <th scope="col">Status</th>
                     </tr>
                 </thead>
@@ -76,6 +78,33 @@ session_start();
                     ?>
                         <tr>
                             <td><?php echo $rooms_result['roomno']; ?></td>
+                            <td><?php
+
+                                $warden = "Select * from warden where hid = '" . $rooms_result['hid'] . "'";
+                                $warden_execute = mysqli_query($con, $warden);
+                                $warden_result = mysqli_fetch_assoc($warden_execute);
+                                echo $warden_result['wname'];
+                                ?></td>
+
+                            <td>
+                                <?php
+
+                                $students = "Select * from roomallocated where hid = '" . $rooms_result['hid'] . "' and roomno = ".$rooms_result['roomno'].";";
+                                $students_execute = mysqli_query($con, $students);
+                                while($result = mysqli_fetch_assoc($students_execute))
+                                {
+                                echo $result['usn'];
+                                echo "-  on : ";
+                                echo $result['a_date'];
+                                echo "<br>";
+                                }
+                                ?>
+
+
+                            </td>
+
+
+
                             <td>
                                 <?php if ($rooms_result['alloted'] == 'Yes') { ?>
                                     <button id="<?php echo $count; ?>" class="btn btn-success">Booked</button>

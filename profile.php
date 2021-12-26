@@ -87,9 +87,10 @@ session_start();
                     <div class="d-flex flex-row justify-content-center align-items-center gap-2"> <span class="idd1"><?php echo $_SESSION['usn']; ?></span></div>
                     <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span class="number">Booked Room Details</span> </div>
 
-                    <div class="text mt-3"> <span>Booking-Id:<?php echo $userinfo_results['usn']; ?> <br>
-                            <br>Hostel No: <?php echo $userinfo_results['hname']; ?><br>
-                            <br> Room No: <?php echo $userinfo_results['roomno']; ?></span>
+                    <div class="text mt-3"> 
+                        <!-- <span>Booking-Id:<?php echo $userinfo_results['usn']; ?> <br> -->
+                            <br>Hostel : <?php echo $userinfo_results['hname']; ?><br>
+                            <br> Room No : <?php echo $userinfo_results['roomno']; ?></span>
                     </div>
 
 
