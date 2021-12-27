@@ -148,13 +148,40 @@ session_start();
             <input type="number" min=0 id="roomno" placeholder="Add Room No" name="roomno">
         </div>
 
-        <div class="mb-3">
-            <label for="roomno">Beds available:</label>
-            <input type="number" min=0 id="beds" placeholder="Add No of beds" name="beds">
+        <div class="mb-3"></div>
+        <label for="roomno">Beds available:</label>
+        <input type="number" min=0 id="beds" placeholder="Add No of beds" name="beds">
         </div>
 
 
         <button id="addroom" type="submit" class="btn btn-primary">ADD</button>
+
+    </form>
+
+    <form action="admindelete.php" id="add_room_form" method="POST" name="form1">
+
+        <h2>DELETE ROOMS :</h2>
+
+
+        <div class="mb-3">
+            <label for="hostel">Choose a hostel:</label>
+            <select name="hostel" id="hostel">
+                <option value="H1">BOYS HOSTEL</option>
+                <option value="H2">GIRLS HOSTEL</option>
+            </select>
+
+        </div>
+
+
+        <div class="mb-3">
+            <label for="roomno">Room No:</label>
+            <input type="number" min=0 id="roomno" placeholder="Add Room No" name="roomno">
+        </div>
+
+
+
+        <button id="addroom" type="submit" class="btn btn-danger">DELETE</button>
+
     </form>
 
 
@@ -216,7 +243,7 @@ session_start();
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             © 2021 Copyright: All rights reserved
-            
+
         </div>
         <!-- Copyright -->
     </footer>
