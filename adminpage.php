@@ -40,7 +40,7 @@ session_start();
         </ul>
     </nav>
 
-    <div class="viewtable">
+    <div class="viewtable" id="admin_show">
 
         <?php
 
@@ -89,14 +89,13 @@ session_start();
                             <td>
                                 <?php
 
-                                $students = "Select * from roomallocated where hid = '" . $rooms_result['hid'] . "' and roomno = ".$rooms_result['roomno'].";";
+                                $students = "Select * from roomallocated where hid = '" . $rooms_result['hid'] . "' and roomno = " . $rooms_result['roomno'] . ";";
                                 $students_execute = mysqli_query($con, $students);
-                                while($result = mysqli_fetch_assoc($students_execute))
-                                {
-                                echo $result['usn'];
-                                echo "-  on : ";
-                                echo $result['a_date'];
-                                echo "<br>";
+                                while ($result = mysqli_fetch_assoc($students_execute)) {
+                                    echo $result['usn'];
+                                    echo "-  on : ";
+                                    echo $result['a_date'];
+                                    echo "<br>";
                                 }
                                 ?>
 
@@ -148,6 +147,12 @@ session_start();
             <label for="roomno">Room No:</label>
             <input type="number" min=0 id="roomno" placeholder="Add Room No" name="roomno">
         </div>
+
+        <div class="mb-3">
+            <label for="roomno">Beds available:</label>
+            <input type="number" min=0 id="beds" placeholder="Add No of beds" name="beds">
+        </div>
+
 
         <button id="addroom" type="submit" class="btn btn-primary">ADD</button>
     </form>
